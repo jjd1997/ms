@@ -1,4 +1,4 @@
-# 林澈个人面试博客主页
+# jjd 个人面试博客主页
 
 这是一个 React + Vite + TypeScript 的个人面试博客页面，使用 GSAP ScrollTrigger 做滚动视差动画，并用 PixiJS 做局部视觉特效。
 

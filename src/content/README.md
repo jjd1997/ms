@@ -31,7 +31,7 @@ Vercel 会跟随 `main` 分支自动重新部署。
 
 当前只服务一个人，所以先保留单文件 `site-content.json`。如果以后要给多人复用，建议扩展成：
 
-- `src/content/people/linche.json`
+- `src/content/people/jjd.json`
 - `src/content/people/another-person.json`
 
 再通过路由参数、构建环境变量或后台选择具体内容。这样每个人的内容互不污染，页面组件仍然可以复用。

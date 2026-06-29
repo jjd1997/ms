@@ -1,15 +1,15 @@
 {
   "seo": {
-    "title": "林澈 | 前端工程师面试博客",
-    "description": "林澈的个人面试博客，展示前端工程、产品协作、项目复盘和技术文章。"
+    "title": "jjd | 前端工程师面试博客",
+    "description": "jjd 的个人面试博客，展示前端工程、产品协作、项目复盘和技术文章。"
   },
   "profile": {
-    "name": "林澈",
-    "initials": "LC",
+    "name": "jjd",
+    "initials": "JJD",
     "role": "前端工程师 / Web 产品工程候选人",
-    "email": "linche.dev@example.com",
-    "github": "github.com/linche-dev",
-    "city": "上海，可远程协作"
+    "email": "2499124163@qq.com",
+    "github": "github.com/jjd1997",
+    "city": "中国，可远程协作"
   },
   "ui": {
     "skipLink": "跳到主要内容",
@@ -32,7 +32,7 @@
   ],
   "hero": {
     "eyebrow": "Interview-ready personal blog",
-    "title": "林澈",
+    "title": "jjd",
     "statement": "把复杂业务做成清爽、稳定、可持续迭代的 Web 产品。",
     "lede": "我做过订单履约、低代码表单、数据分析看板，也写技术复盘。比起只展示技术栈，我更希望面试官看到我如何理解问题、做取舍、交付结果。",
     "image": {
@@ -93,7 +93,7 @@
     },
     "contact": {
       "eyebrow": "Contact",
-      "title": "如果岗位需要一个能把产品、工程和体验串起来的人，可以约林澈聊聊。",
+      "title": "如果岗位需要一个能把产品、工程和体验串起来的人，可以约 jjd 聊聊。",
       "text": "欢迎把 JD、团队背景或希望重点讨论的问题发到邮箱。我会用项目证据和复盘过程回答。"
     }
   },
@@ -226,7 +226,7 @@
   ],
   "faqs": [
     {
-      "q": "林澈最适合什么样的岗位？",
+      "q": "jjd 最适合什么样的岗位？",
       "a": "适合需要兼顾产品理解、复杂前端实现和交付质量的岗位，尤其是中后台、数据产品、流程平台和增长工具。"
     },
     {
@@ -239,6 +239,6 @@
     }
   ],
   "footer": {
-    "copyright": "© 2026 林澈"
+    "copyright": "© 2026 jjd"
   }
 }
