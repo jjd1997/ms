@@ -33,9 +33,16 @@ const capabilityIcons: Record<CapabilityIconName, LucideIcon> = {
 };
 
 function normalizeContent(content: SiteContent): SiteContent {
+  const navItems = content.navItems.some((item) => item.href === "#lab")
+    ? content.navItems
+    : content.navItems.flatMap((item) =>
+        item.href === "#projects" ? [item, { label: "作品", href: "#lab" }] : [item],
+      );
+
   return {
     ...siteContent,
     ...content,
+    navItems,
     projects: content.projects.map((project, index) => ({
       ...project,
       links: project.links ?? siteContent.projects[index]?.links ?? [],
