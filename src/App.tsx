@@ -17,28 +17,14 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import PixiAtmosphere from "./PixiAtmosphere";
 import PixiCardOverlay from "./PixiCardOverlay";
+import ContentStudio from "./ContentStudio";
 import siteContentData from "./content/site-content.json";
 import type { CapabilityIconName, SiteContent } from "./content/types";
 
 type PostCategory = string;
+type StudioSectionId = "hero" | "about" | "projects" | "writing" | "experience" | "stack" | "faq" | "contact";
 
 const siteContent = siteContentData as SiteContent;
-const {
-  capabilities,
-  faqs,
-  footer,
-  hero,
-  highlights,
-  navItems,
-  profile,
-  projects,
-  sections,
-  seo,
-  stack,
-  timeline,
-  ui,
-  writing,
-} = siteContent;
 
 const capabilityIcons: Record<CapabilityIconName, LucideIcon> = {
   code: Code2,
@@ -63,23 +49,72 @@ function usePrefersReducedMotion() {
 }
 
 function App() {
+  const isStudioRoute = window.location.pathname.includes("content-studio");
+
+  if (isStudioRoute) {
+    return (
+      <ContentStudio
+        initialContent={siteContent}
+        renderPreview={(props) => <PublicPage {...props} />}
+      />
+    );
+  }
+
+  return <PublicPage content={siteContent} />;
+}
+
+export function PublicPage({
+  activeStudioField,
+  activeStudioSection,
+  content,
+  studioMode = false,
+}: {
+  activeStudioField?: string;
+  activeStudioSection?: StudioSectionId;
+  content: SiteContent;
+  studioMode?: boolean;
+}) {
+  const {
+    capabilities,
+    faqs,
+    footer,
+    hero,
+    highlights,
+    navItems,
+    profile,
+    projects,
+    sections,
+    seo,
+    stack,
+    timeline,
+    ui,
+    writing,
+  } = content;
   const [activeCategory, setActiveCategory] = useState<PostCategory>(writing.filters[0]?.value ?? "all");
   const [copied, setCopied] = useState(false);
   const shouldReduceMotion = usePrefersReducedMotion();
   const pageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (studioMode) {
+      return;
+    }
+
     document.title = seo.title;
     document.querySelector('meta[name="description"]')?.setAttribute("content", seo.description);
-  }, []);
+  }, [seo.description, seo.title, studioMode]);
+
+  useEffect(() => {
+    setActiveCategory(writing.filters[0]?.value ?? "all");
+  }, [writing.filters]);
 
   const filteredPosts = useMemo(
     () => writing.posts.filter((post) => activeCategory === "all" || post.category === activeCategory),
-    [activeCategory],
+    [activeCategory, writing.posts],
   );
 
   useLayoutEffect(() => {
-    if (shouldReduceMotion || !pageRef.current) {
+    if (studioMode || shouldReduceMotion || !pageRef.current) {
       return;
     }
 
@@ -361,7 +396,7 @@ function App() {
       cancelled = true;
       cleanupScrollMotion?.();
     };
-  }, [shouldReduceMotion]);
+  }, [shouldReduceMotion, studioMode]);
 
   async function copyEmail() {
     await navigator.clipboard.writeText(profile.email);
@@ -369,8 +404,13 @@ function App() {
     window.setTimeout(() => setCopied(false), 2200);
   }
 
+  const studioSectionClass = (section: StudioSectionId) =>
+    studioMode && activeStudioSection === section ? " studio-section-focus" : "";
+  const studioFieldClass = (field: string) =>
+    studioMode && activeStudioField === field ? " studio-field-focus" : "";
+
   return (
-    <div className="page-shell" ref={pageRef}>
+    <div className={`page-shell${studioMode ? " page-shell-preview" : ""}`} ref={pageRef}>
       <a className="skip-link" href="#main">
         {ui.skipLink}
       </a>
@@ -379,7 +419,7 @@ function App() {
         <nav className="nav-shell" aria-label={ui.navAriaLabel}>
           <a className="brand" href="#top" aria-label={ui.brandAriaLabel}>
             <span className="brand-mark">{profile.initials}</span>
-            <span>{profile.name}</span>
+            <span className={studioFieldClass("profile.name")}>{profile.name}</span>
           </a>
           <div className="nav-links">
             {navItems.map((item) => (
@@ -396,21 +436,21 @@ function App() {
       </header>
 
       <main id="main">
-        <section id="top" className="hero section-shell">
+        <section id="top" className={`hero section-shell${studioSectionClass("hero")}`}>
           <div
             className="hero-copy"
           >
             <p className="eyebrow">
               {hero.eyebrow}
             </p>
-            <h1>{hero.title}</h1>
-            <p className="hero-statement">
+            <h1 className={studioFieldClass("hero.title")}>{hero.title}</h1>
+            <p className={`hero-statement${studioFieldClass("hero.statement")}`}>
               {hero.statement}
             </p>
-            <p className="hero-role">
+            <p className={`hero-role${studioFieldClass("profile.role")}`}>
               {profile.role}
             </p>
-            <p className="hero-lede">
+            <p className={`hero-lede${studioFieldClass("hero.lede")}`}>
               {hero.lede}
             </p>
             <div className="hero-actions">
@@ -424,8 +464,8 @@ function App() {
               </a>
             </div>
             <dl className="proof-grid" aria-label={ui.proofAriaLabel}>
-              {highlights.map((item) => (
-                <div key={item.label}>
+              {highlights.map((item, index) => (
+                <div className={studioFieldClass(`highlights.${index}`)} key={item.label}>
                   <dt>{item.label}</dt>
                   <dd>{item.value}</dd>
                 </div>
@@ -460,11 +500,11 @@ function App() {
           </figure>
         </section>
 
-        <RevealSection id="about" className="soft-band">
+        <RevealSection id="about" className={`soft-band${studioSectionClass("about")}`}>
           <div className="section-heading">
             <p className="eyebrow">{sections.about.eyebrow}</p>
-            <h2>{sections.about.title}</h2>
-            <p>
+            <h2 className={studioFieldClass("sections.about.title")}>{sections.about.title}</h2>
+            <p className={studioFieldClass("sections.about.text")}>
               {sections.about.text}
             </p>
           </div>
@@ -482,23 +522,29 @@ function App() {
           </div>
         </RevealSection>
 
-        <RevealSection id="projects" className="section-shell">
+        <RevealSection id="projects" className={`section-shell${studioSectionClass("projects")}`}>
           <div className="section-heading compact">
             <p className="eyebrow">{sections.projects.eyebrow}</p>
-            <h2>{sections.projects.title}</h2>
+            <h2 className={studioFieldClass("sections.projects.title")}>{sections.projects.title}</h2>
           </div>
           <div className="project-showcase-list">
             {projects.map((project, index) => (
-              <ProjectShowcase project={project} index={index} key={project.name} />
+              <ProjectShowcase
+                activeStudioField={activeStudioField}
+                project={project}
+                index={index}
+                key={project.name}
+                studioMode={studioMode}
+              />
             ))}
           </div>
         </RevealSection>
 
-        <RevealSection id="writing" className="writing-band">
+        <RevealSection id="writing" className={`writing-band${studioSectionClass("writing")}`}>
           <div className="section-heading">
             <p className="eyebrow">{sections.writing.eyebrow}</p>
-            <h2>{sections.writing.title}</h2>
-            <p>{sections.writing.text}</p>
+            <h2 className={studioFieldClass("sections.writing.title")}>{sections.writing.title}</h2>
+            <p className={studioFieldClass("sections.writing.text")}>{sections.writing.text}</p>
           </div>
           <div className="filter-bar" role="group" aria-label={writing.filterAriaLabel}>
             {writing.filters.map(({ value, label }) => (
@@ -521,8 +567,8 @@ function App() {
                 >
                   <PixiCardOverlay label={post.label} reducedMotion={Boolean(shouldReduceMotion)} tone={index} />
                   <span className="post-kicker">{post.label} · {post.read}</span>
-                  <h3>{post.title}</h3>
-                  <p>{post.excerpt}</p>
+                  <h3 className={studioFieldClass(`writing.posts.${index}.title`)}>{post.title}</h3>
+                  <p className={studioFieldClass(`writing.posts.${index}.excerpt`)}>{post.excerpt}</p>
                   <a href="#contact">
                     {writing.ctaLabel}
                     <ArrowUpRight aria-hidden="true" />
@@ -532,29 +578,29 @@ function App() {
           </div>
         </RevealSection>
 
-        <RevealSection id="experience" className="section-shell split-section">
+        <RevealSection id="experience" className={`section-shell split-section${studioSectionClass("experience")}`}>
           <div className="section-heading sticky-heading">
             <p className="eyebrow">{sections.experience.eyebrow}</p>
-            <h2>{sections.experience.title}</h2>
-            <p>{profile.city}。{sections.experience.text}</p>
+            <h2 className={studioFieldClass("sections.experience.title")}>{sections.experience.title}</h2>
+            <p className={studioFieldClass("sections.experience.text")}>{profile.city}。{sections.experience.text}</p>
           </div>
           <ol className="timeline">
-            {timeline.map((item) => (
+            {timeline.map((item, index) => (
               <li className="lift-card" key={item.time}>
                 <span>{item.time}</span>
                 <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
+                  <h3 className={studioFieldClass(`timeline.${index}.title`)}>{item.title}</h3>
+                  <p className={studioFieldClass(`timeline.${index}.text`)}>{item.text}</p>
                 </div>
               </li>
             ))}
           </ol>
         </RevealSection>
 
-        <RevealSection className="soft-band stack-section">
+        <RevealSection className={`soft-band stack-section${studioSectionClass("stack")}`}>
           <div className="section-heading compact">
             <p className="eyebrow">{sections.stack.eyebrow}</p>
-            <h2>{sections.stack.title}</h2>
+            <h2 className={studioFieldClass("sections.stack.title")}>{sections.stack.title}</h2>
           </div>
           <div className="stack-cloud" aria-label="技术栈">
             {stack.map((item) => (
@@ -565,34 +611,34 @@ function App() {
           </div>
         </RevealSection>
 
-        <RevealSection className="section-shell faq-section">
+        <RevealSection className={`section-shell faq-section${studioSectionClass("faq")}`}>
           <div className="section-heading compact">
             <p className="eyebrow">{sections.faq.eyebrow}</p>
-            <h2>{sections.faq.title}</h2>
+            <h2 className={studioFieldClass("sections.faq.title")}>{sections.faq.title}</h2>
           </div>
           <div className="faq-list">
             {faqs.map((item, index) => (
               <details key={item.q} open={index === 0}>
                 <summary>
-                  {item.q}
+                  <span className={studioFieldClass(`faqs.${index}.q`)}>{item.q}</span>
                   <ChevronDown aria-hidden="true" />
                 </summary>
-                <p>{item.a}</p>
+                <p className={studioFieldClass(`faqs.${index}.a`)}>{item.a}</p>
               </details>
             ))}
           </div>
         </RevealSection>
 
-        <RevealSection id="contact" className="contact-band">
+        <RevealSection id="contact" className={`contact-band${studioSectionClass("contact")}`}>
           <div>
             <p className="eyebrow">{sections.contact.eyebrow}</p>
-            <h2>{sections.contact.title}</h2>
-            <p>{sections.contact.text}</p>
+            <h2 className={studioFieldClass("sections.contact.title")}>{sections.contact.title}</h2>
+            <p className={studioFieldClass("sections.contact.text")}>{sections.contact.text}</p>
           </div>
           <div className="contact-actions">
             <a className="button button-primary" href={`mailto:${profile.email}`}>
               <Mail aria-hidden="true" />
-              {profile.email}
+              <span className={studioFieldClass("profile.email")}>{profile.email}</span>
             </a>
             <button className="button button-secondary" type="button" onClick={copyEmail}>
               <Copy aria-hidden="true" />
@@ -600,14 +646,14 @@ function App() {
             </button>
             <a className="button button-ghost" href={`https://${profile.github}`}>
               <Github aria-hidden="true" />
-              {profile.github}
+              <span className={studioFieldClass("profile.github")}>{profile.github}</span>
             </a>
           </div>
         </RevealSection>
       </main>
 
       <footer className="site-footer">
-        <span>{footer.copyright}</span>
+        <span className={studioFieldClass("footer.copyright")}>{footer.copyright}</span>
         <a href="#top">
           {ui.footerBackToTop}
           <MoveUpRight aria-hidden="true" />
@@ -663,12 +709,17 @@ function RevealSection({
 }
 
 function ProjectShowcase({
+  activeStudioField,
   project,
   index,
 }: {
-  project: (typeof projects)[number];
+  activeStudioField?: string;
+  project: SiteContent["projects"][number];
   index: number;
+  studioMode?: boolean;
 }) {
+  const studioFieldClass = (field: string) => (activeStudioField === field ? " studio-field-focus" : "");
+
   return (
     <article className={`showcase-card showcase-card-${index + 1}`}>
       <div className="showcase-copy">
@@ -676,9 +727,9 @@ function ProjectShowcase({
           <span>{project.index}</span>
           <CheckCircle2 aria-hidden="true" />
         </div>
-        <p className="project-name">{project.name}</p>
-        <h3>{project.result}</h3>
-        <p>{project.text}</p>
+        <p className={`project-name${studioFieldClass(`projects.${index}.name`)}`}>{project.name}</p>
+        <h3 className={studioFieldClass(`projects.${index}.result`)}>{project.result}</h3>
+        <p className={studioFieldClass(`projects.${index}.text`)}>{project.text}</p>
         <ul className="tag-list" aria-label={`${project.name} 技术标签`}>
           {project.tags.map((tag) => (
             <li key={tag}>{tag}</li>

@@ -19,6 +19,14 @@ npm run dev
 
 当前内容模型先按单人站点设计。未来如果需要多人复用，可以拆成多个个人 JSON，再通过路由或构建参数选择内容。
 
+也可以打开内容工作台可视化编辑：
+
+```bash
+http://127.0.0.1:5173/content-studio
+```
+
+工作台支持按页面区块编辑、实时预览、桌面/平板/手机预览切换，以及复制或下载当前 `site-content.json`。静态部署版本不能直接写回 GitHub，导出的 JSON 需要替换 `src/content/site-content.json` 后再提交。
+
 改完内容后：
 
 ```bash
