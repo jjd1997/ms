@@ -1,12 +1,12 @@
 {
   "seo": {
-    "title": "金佳栋 | 4 年前端工程师作品与面试主页",
-    "description": "金佳栋的前端工程师面试主页，围绕业务系统、表单平台、数据看板和个人项目展示工程判断、协作方式与交付结果。"
+    "title": "金佳栋 | WebGIS / 三维可视化 / 数据大屏前端工程师",
+    "description": "金佳栋的前端工程师面试主页，展示 WebGIS、Cesium、OpenLayers、Three.js、ECharts 数据大屏和企业级前端项目经验。"
   },
   "profile": {
     "name": "金佳栋",
     "initials": "JJD",
-    "role": "4 年前端工程师 / React、Vue、TypeScript / 中后台与 AI 应用方向",
+    "role": "4 年前端工程师 / WebGIS、三维可视化、数据分析大屏方向",
     "email": "2499124163@qq.com",
     "github": "github.com/jjd1997",
     "city": "中国，可远程协作"
@@ -50,10 +50,10 @@
     }
   ],
   "hero": {
-    "eyebrow": "Frontend engineer · 4 years",
+    "eyebrow": "Frontend engineer · WebGIS / 3D / Data visualization",
     "title": "金佳栋",
-    "statement": "偏业务型前端：把复杂流程、配置系统和数据界面做成可维护的产品。",
-    "lede": "过去 4 年主要围绕中后台、流程工作台、表单配置、数据看板和最近的 AI 应用实践展开。这个页面不只列技术栈，而是把项目背景、我的职责、关键取舍和结果口径放在一起，方便面试时直接展开聊。",
+    "statement": "做过 WebGIS、三维场景和数据大屏，也能把复杂前端工程落到可维护代码里。",
+    "lede": "过去 4 年主要参与公司级 WebGIS、数字孪生、ECharts 数据大屏和企业后台项目。这个页面不再只展示动画和技术名词，而是把我在地图图层、三维交互、数据可视化、性能治理和工程协作中的具体工作整理出来，方便面试官按真实项目追问。",
     "image": {
       "src": "/assets/hero-workspace.png",
       "alt": "明亮桌面上的笔记本电脑、键盘、笔记本和书写工具",
@@ -64,17 +64,17 @@
       {
         "className": "hero-floating-card-left",
         "label": "Role",
-        "value": "需求拆解 / 前端架构 / 复杂交互落地"
+        "value": "图层管理 / 三维交互 / 数据可视化"
       },
       {
         "className": "hero-floating-card-right",
         "label": "Focus",
-        "value": "TypeScript / React / Vue / 性能治理"
+        "value": "Cesium / OpenLayers / Three.js / ECharts"
       }
     ],
     "caption": {
       "label": "Latest focus",
-      "value": "从业务工作台到 AI 知识库：持续补足产品闭环能力"
+      "value": "从地图引擎到数据大屏：关注可视化项目的工程落地"
     }
   },
   "highlights": [
@@ -84,22 +84,22 @@
     },
     {
       "label": "主线",
-      "value": "中后台 / 看板 / 表单平台"
+      "value": "WebGIS / 三维可视化 / 数据大屏"
     },
     {
       "label": "优势",
-      "value": "需求拆解、组件抽象、性能优化"
+      "value": "图层、场景、图表、性能治理"
     }
   ],
   "sections": {
     "about": {
       "eyebrow": "How I work",
-      "title": "我更关注一个功能为什么做、边界在哪里、上线后怎么验证。",
-      "text": "4 年前端工作里，我主要处理的是业务变化快、状态复杂、协作角色多的 Web 系统。我的习惯是先把业务路径和异常场景讲清楚，再决定组件拆分、状态模型、接口缓存和交互反馈。"
+      "title": "我的优势不只是会调库，而是能把可视化需求拆成稳定的工程模块。",
+      "text": "WebGIS 和三维可视化项目很容易停留在 Demo 效果上，真正上线时会遇到坐标系、图层顺序、海量点位、模型加载、权限数据、接口刷新和性能问题。我习惯先把数据结构、交互边界和渲染策略定清楚，再进入组件封装和页面实现。"
     },
     "projects": {
       "eyebrow": "Selected work",
-      "title": "三个可展开追问的项目：流程工作台、配置平台、数据看板。"
+      "title": "三个更接近真实公司场景的项目：WebGIS、三维可视化、数据大屏。"
     },
     "lab": {
       "eyebrow": "Projects lab",
@@ -108,8 +108,8 @@
     },
     "writing": {
       "eyebrow": "Writing",
-      "title": "文章不是教程摘抄，而是项目复盘和工程判断。",
-      "text": "我会把需求变化、技术取舍、性能定位、组件边界这些内容写下来。面试时如果需要深挖，可以直接从文章主题切入。"
+      "title": "文章和复盘围绕可视化项目里的真实问题展开。",
+      "text": "相比整理 API 用法，我更愿意记录项目里踩过的坑：坐标系不一致、点位过多、三维场景销毁、图表 resize、接口刷新节奏和大屏适配。"
     },
     "experience": {
       "eyebrow": "Experience",
@@ -133,101 +133,103 @@
   "capabilities": [
     {
       "icon": "target",
-      "title": "业务拆解与边界确认",
-      "text": "会先确认角色、主路径、异常流、权限边界和验收口径，避免只按原型切页面，后期再被业务规则反复打穿。"
+      "title": "WebGIS 业务拆解",
+      "text": "能把地图需求拆成底图、业务图层、空间查询、绘制编辑、轨迹回放、弹窗信息和权限过滤，而不是只把点位画出来。"
     },
     {
       "icon": "code",
-      "title": "可维护的前端实现",
-      "text": "重视 TypeScript 类型、组件边界、接口缓存、表单状态和错误处理。复杂页面会先设计状态模型，再进入 UI 细节。"
+      "title": "可视化工程实现",
+      "text": "熟悉 Cesium、OpenLayers、Three.js、ECharts 在项目里的工程组织方式，关注图层生命周期、实例销毁、事件绑定和性能边界。"
     },
     {
       "icon": "gauge",
-      "title": "体验与性能治理",
-      "text": "会关注首屏加载、列表卡顿、重复渲染、空状态、错误恢复和操作反馈。优化不是只跑分，而是回到真实用户路径。"
+      "title": "性能和交互治理",
+      "text": "会处理大屏 resize、图表刷新、地图点位聚合、模型加载、重复渲染和高频交互节流。优化目标是稳定可用，而不是只追求炫技。"
     }
   ],
   "projects": [
     {
       "index": "01",
-      "name": "B2B 订单履约工作台",
-      "result": "把分散的查询、判断、备注和流转整合到一个可追踪工作台",
-      "text": "项目背景是客服和运营处理异常订单时需要跨多个后台查状态、看日志、补备注，处理链路长且容易漏信息。我负责前端方案和核心模块实现，包括筛选模型、订单时间线、异常标签聚合、批量操作确认、接口缓存和空/错状态。上线后处理路径更集中，面试时可以重点聊如何建模订单状态、如何避免批量操作误触、如何和后端对齐事件时间线。",
+      "name": "智慧城市 WebGIS 地图平台",
+      "result": "基于 Cesium + OpenLayers 承接二维/三维地图、图层管理和业务点位展示",
+      "text": "公司项目中负责地图相关前端模块：二维地图使用 OpenLayers 承接底图、矢量图层、绘制测量和空间查询；三维部分使用 Cesium 展示倾斜摄影、3D Tiles、设备点位和轨迹回放。重点处理坐标转换、图层显隐、点位聚合、弹窗联动、地图事件解绑和权限过滤。面试可以展开聊 Entity 与 Primitive 的取舍、WMS/WMTS 图层接入、坐标系问题和大量点位性能处理。",
       "tags": [
-        "React",
+        "Cesium",
+        "OpenLayers",
         "TypeScript",
-        "TanStack Query",
-        "状态建模",
-        "批量操作"
+        "3D Tiles",
+        "WebGIS"
       ],
       "links": [
         {
-          "label": "项目详情",
+          "label": "技术拆解",
           "href": "#contact"
         },
         {
-          "label": "复盘文章",
+          "label": "相关复盘",
           "href": "#writing"
         }
       ],
       "visual": {
-        "evidenceLabel": "我的职责",
-        "evidenceValue": "核心模块负责",
-        "prompt": "把订单状态、处理建议和操作记录放在同一上下文"
+        "evidenceLabel": "核心能力",
+        "evidenceValue": "2D / 3D GIS",
+        "prompt": "把地图图层、业务数据和三维场景组织成可维护模块"
       }
     },
     {
       "index": "02",
-      "name": "Schema 表单配置平台",
-      "result": "把重复表单开发收敛成字段协议、校验生命周期和联动规则",
-      "text": "业务里存在大量审批、录入、配置类表单，字段重复但规则差异明显。我参与字段 Schema、组件映射、异步校验、联动显示、权限只读和提交前规范化处理。这个项目最能说明我如何在“配置自由度”和“工程可控性”之间做取舍，也能展开聊表单状态、字段依赖、错误展示和调试体验。",
+      "name": "Three.js 三维场景与设备态势",
+      "result": "围绕园区/设备场景实现模型加载、交互拾取、标注和状态联动",
+      "text": "参与三维可视化模块开发，使用 Three.js 处理模型加载、相机控制、对象拾取、高亮描边、设备标签、路径动画和状态面板联动。项目重点不是做一次性炫酷效果，而是把场景初始化、资源加载、事件绑定、对象索引和销毁逻辑封装好，避免切换页面或刷新数据时出现内存泄漏、重复事件和帧率下降。",
       "tags": [
-        "Vue 3",
-        "Element Plus",
-        "Schema Form",
-        "表单联动"
+        "Three.js",
+        "GLTF",
+        "Raycaster",
+        "Camera Control",
+        "3D Interaction"
       ],
       "links": [
         {
-          "label": "项目详情",
+          "label": "交互说明",
           "href": "#contact"
         },
         {
-          "label": "技术方案",
+          "label": "工程复盘",
           "href": "#writing"
         }
       ],
       "visual": {
-        "evidenceLabel": "关键取舍",
-        "evidenceValue": "配置自由度",
-        "prompt": "先约束字段协议，再开放业务配置"
+        "evidenceLabel": "关键实现",
+        "evidenceValue": "Scene lifecycle",
+        "prompt": "让三维场景可切换、可销毁、可持续维护"
       }
     },
     {
       "index": "03",
-      "name": "数据分析看板性能治理",
-      "result": "从接口、渲染和图表实例三个层面治理看板卡顿",
-      "text": "看板页面包含多筛选条件、多图表和大列表，问题不是单点慢，而是接口瀑布流、重复渲染、图表实例销毁不彻底和筛选触发过频叠加。我负责定位性能瓶颈，拆分首屏请求、缓存稳定参数、减少无效渲染、补齐图表销毁逻辑，并统一 loading、empty、error 反馈。这个项目适合聊性能分析方法和如何验证优化不是心理感觉。",
+      "name": "ECharts 数据分析大屏",
+      "result": "搭建指标卡、趋势图、地图分布和实时告警组成的数据驾驶舱",
+      "text": "负责多个数据分析/大屏页面的前端实现，主要使用 ECharts 组织指标卡、折线柱状组合图、地图分布、排名列表和实时告警。项目里重点处理接口聚合、图表 resize、自适应布局、主题配置、轮询刷新、空数据展示和大屏性能。相比单纯把图表摆上去，更关注指标层级、刷新节奏和异常状态能否被业务人员快速读懂。",
       "tags": [
-        "Performance",
-        "Charts",
-        "Profiling",
-        "错误恢复"
+        "ECharts",
+        "Data Dashboard",
+        "Responsive",
+        "Polling",
+        "Performance"
       ],
       "links": [
         {
-          "label": "项目详情",
+          "label": "大屏说明",
           "href": "#contact"
         },
         {
-          "label": "优化记录",
+          "label": "性能记录",
           "href": "#writing"
         }
       ],
       "visual": {
-        "evidenceLabel": "优化口径",
-        "evidenceValue": "真实路径",
-        "prompt": "先定位接口和渲染瓶颈，再决定优化手段"
+        "evidenceLabel": "项目重点",
+        "evidenceValue": "ECharts 大屏",
+        "prompt": "让指标、地图、趋势和告警按业务判断路径呈现"
       }
     }
   ],
@@ -305,29 +307,29 @@
       {
         "category": "engineering",
         "label": "工程",
-        "title": "复杂表单失控之前，应该先定义什么",
-        "excerpt": "字段协议、默认值、校验生命周期、联动边界、只读权限和错误展示策略，是表单平台能否复用的基础。",
+        "title": "Cesium 项目里，为什么不能把所有点都当 Entity 画",
+        "excerpt": "记录 Entity、Primitive、点位聚合和弹窗联动的取舍，以及大量点位场景下如何控制性能和事件复杂度。",
         "read": "8 min"
       },
       {
         "category": "product",
         "label": "产品",
-        "title": "为什么数据看板不能只是堆图表",
-        "excerpt": "看板真正服务的是判断路径。首屏要回答最重要的问题，筛选、指标和明细需要围绕用户决策组织。",
+        "title": "OpenLayers 图层管理，不只是底图切换",
+        "excerpt": "图层顺序、权限过滤、绘制编辑、空间查询和弹窗联动如果没有统一管理，后期会很难维护。",
         "read": "6 min"
       },
       {
         "category": "interview",
         "label": "面试",
-        "title": "面试讲项目时，我会主动交代的五件事",
-        "excerpt": "背景、职责边界、关键取舍、结果口径、如果重做会改什么，这些比单纯堆技术名词更能说明经验。",
+        "title": "Three.js 场景从 Demo 到项目，要补哪些工程化细节",
+        "excerpt": "模型加载、对象索引、相机控制、拾取交互、事件解绑和资源释放，是三维页面能不能长期维护的关键。",
         "read": "5 min"
       },
       {
         "category": "engineering",
         "label": "工程",
-        "title": "一次看板性能优化，我如何避免只优化分数",
-        "excerpt": "从真实用户路径出发，记录接口瀑布流、重复渲染、图表实例和防回退验证的全过程。",
+        "title": "ECharts 大屏卡顿时，我会先看哪些地方",
+        "excerpt": "从接口刷新、图表实例、resize 监听、动画开销和 DOM 信息密度入手，而不是盲目改样式或换库。",
         "read": "10 min"
       }
     ]
@@ -335,18 +337,18 @@
   "timeline": [
     {
       "time": "2024 - 现在",
-      "title": "前端工程师，逐步负责核心业务模块",
-      "text": "参与需求评审、前端方案设计、复杂交互实现、接口联调、上线验收和问题复盘。主要面对运营、客服、数据分析等内部用户。"
+      "title": "前端工程师，参与 WebGIS / 数字孪生相关公司项目",
+      "text": "负责地图图层、三维场景、业务点位、轨迹回放、数据弹窗和可视化页面开发。日常协作对象包括后端、GIS 数据同事、产品和测试。"
     },
     {
       "time": "2022 - 2024",
-      "title": "Web 开发工程师，参与组件化和平台化建设",
-      "text": "从业务页面交付开始，逐步参与公共组件、请求封装、权限控制、表单配置和团队规范落地，开始关注复用性和维护成本。"
+      "title": "Web 开发工程师，参与中后台和 ECharts 数据看板项目",
+      "text": "主要负责 Vue/React 页面开发、ECharts 图表配置、筛选条件联动、接口聚合、权限控制和响应式布局，逐步积累复杂页面状态管理经验。"
     },
     {
       "time": "持续进行",
       "title": "个人项目与技术复盘",
-      "text": "持续把项目经验整理成文章和可访问 Demo，包括当前面试主页、内容工作台、PlanFlow 看板和 AI 知识库问答。"
+      "text": "持续把可视化项目经验整理成文章和可访问 Demo，包括当前面试主页、内容工作台、PlanFlow 看板和 AI 知识库问答。"
     }
   ],
   "stack": [
@@ -355,8 +357,12 @@
     "Vue 3",
     "Vite",
     "Node.js",
-    "TanStack Query",
-    "Element Plus",
+    "Cesium",
+    "OpenLayers",
+    "Three.js",
+    "ECharts",
+    "WebGIS",
+    "3D Tiles",
     "CSS Architecture",
     "GSAP ScrollTrigger",
     "Accessibility",
@@ -368,15 +374,15 @@
   "faqs": [
     {
       "q": "金佳栋最适合什么样的前端岗位？",
-      "a": "更适合业务复杂度较高的前端岗位，例如中后台、数据产品、流程平台、AI 应用前端和需要长期维护的 Web 产品。"
+      "a": "更适合 WebGIS、数字孪生、数据可视化、大屏、三维场景和复杂中后台方向的前端岗位。"
     },
     {
       "q": "面试时最值得展开聊什么？",
-      "a": "建议从订单履约工作台、Schema 表单平台和数据看板性能治理展开。这三类项目能覆盖业务拆解、组件抽象、状态建模、性能定位和跨角色协作。"
+      "a": "建议从 Cesium/OpenLayers 地图平台、Three.js 三维场景和 ECharts 数据大屏展开。这些项目能覆盖图层管理、坐标系、场景生命周期、图表性能和跨角色协作。"
     },
     {
       "q": "这些项目适合从哪些角度追问？",
-      "a": "可以直接追问订单状态如何建模、表单联动如何约束、看板性能如何定位、内容工作台如何写回 GitHub。每个点都能对应到具体实现和取舍。"
+      "a": "可以直接追问大量点位怎么渲染、Entity 和 Primitive 怎么取舍、OpenLayers 图层如何组织、Three.js 资源如何释放、ECharts 大屏如何做 resize 和刷新控制。"
     }
   ],
   "footer": {
