@@ -1,0 +1,244 @@
+{
+  "seo": {
+    "title": "林澈 | 前端工程师面试博客",
+    "description": "林澈的个人面试博客，展示前端工程、产品协作、项目复盘和技术文章。"
+  },
+  "profile": {
+    "name": "林澈",
+    "initials": "LC",
+    "role": "前端工程师 / Web 产品工程候选人",
+    "email": "linche.dev@example.com",
+    "github": "github.com/linche-dev",
+    "city": "上海，可远程协作"
+  },
+  "ui": {
+    "skipLink": "跳到主要内容",
+    "navAriaLabel": "主导航",
+    "brandAriaLabel": "回到首页",
+    "navAction": "约面试",
+    "primaryAction": "看项目证据",
+    "secondaryAction": "看文章思路",
+    "proofAriaLabel": "候选人摘要",
+    "copyEmail": "复制邮箱",
+    "copiedEmail": "已复制",
+    "footerBackToTop": "回到顶部"
+  },
+  "navItems": [
+    { "label": "能力", "href": "#about" },
+    { "label": "项目", "href": "#projects" },
+    { "label": "文章", "href": "#writing" },
+    { "label": "经历", "href": "#experience" },
+    { "label": "联系", "href": "#contact" }
+  ],
+  "hero": {
+    "eyebrow": "Interview-ready personal blog",
+    "title": "林澈",
+    "statement": "把复杂业务做成清爽、稳定、可持续迭代的 Web 产品。",
+    "lede": "我做过订单履约、低代码表单、数据分析看板，也写技术复盘。比起只展示技术栈，我更希望面试官看到我如何理解问题、做取舍、交付结果。",
+    "image": {
+      "src": "/assets/hero-workspace.png",
+      "alt": "明亮桌面上的笔记本电脑、键盘、笔记本和书写工具",
+      "width": 1536,
+      "height": 864
+    },
+    "floatingCards": [
+      {
+        "className": "hero-floating-card-left",
+        "label": "Context",
+        "value": "需求背景 / 异常流转 / 复盘结论"
+      },
+      {
+        "className": "hero-floating-card-right",
+        "label": "Signal",
+        "value": "42% faster interaction"
+      }
+    ],
+    "caption": {
+      "label": "Latest note",
+      "value": "订单履约工作台复盘：从 18 分钟到 9 分钟"
+    }
+  },
+  "highlights": [
+    { "label": "经验", "value": "4 年 Web 产品工程" },
+    { "label": "主线", "value": "React / Vue / TypeScript" },
+    { "label": "优势", "value": "复杂表单、数据看板、体验优化" }
+  ],
+  "sections": {
+    "about": {
+      "eyebrow": "How I work",
+      "title": "不是堆素材，而是让面试官更快判断匹配度。",
+      "text": "这个页面按「能力线索 - 项目证据 - 文章沉淀 - 协作方式」组织，所有内容都服务于一次高质量面试沟通。"
+    },
+    "projects": {
+      "eyebrow": "Selected work",
+      "title": "三个项目，覆盖业务、平台和性能。"
+    },
+    "writing": {
+      "eyebrow": "Writing",
+      "title": "文章展示的是判断过程，不只是笔记。",
+      "text": "分类切换、卡片入场和悬停反馈都做成了可感知动画，页面不再只是静态排版。"
+    },
+    "experience": {
+      "eyebrow": "Experience",
+      "title": "经历按能力成长组织，方便面试深入追问。",
+      "text": "我希望下一段工作能继续靠近复杂业务、高质量工程和可靠团队协作。"
+    },
+    "stack": {
+      "eyebrow": "Stack",
+      "title": "技术栈和协作习惯"
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "面试前最常被问到的事"
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "如果岗位需要一个能把产品、工程和体验串起来的人，可以约林澈聊聊。",
+      "text": "欢迎把 JD、团队背景或希望重点讨论的问题发到邮箱。我会用项目证据和复盘过程回答。"
+    }
+  },
+  "capabilities": [
+    {
+      "icon": "target",
+      "title": "业务拆解",
+      "text": "能把模糊需求拆成角色、路径、边界、验收口径，再推动到可评审方案。"
+    },
+    {
+      "icon": "code",
+      "title": "工程实现",
+      "text": "习惯用类型、组件边界、状态模型和测试把功能写成能长期维护的代码。"
+    },
+    {
+      "icon": "gauge",
+      "title": "体验治理",
+      "text": "关注首屏速度、交互反馈、空状态、错误态和可访问性，不让细节消耗用户信任。"
+    }
+  ],
+  "projects": [
+    {
+      "index": "01",
+      "name": "B2B 订单履约工作台",
+      "result": "把客服处理时长从平均 18 分钟降到 9 分钟",
+      "text": "负责筛选模型、订单时间线、异常状态聚合和批量操作体验。重构后业务人员可以在一个页面完成查询、判断、备注和流转，不再跨多个后台来回切换。",
+      "tags": ["React", "TypeScript", "TanStack Query", "Design Review"],
+      "visual": {
+        "evidenceLabel": "流程时间线",
+        "evidenceValue": "9 min avg",
+        "prompt": "把异常订单和处理建议放在同一上下文"
+      }
+    },
+    {
+      "index": "02",
+      "name": "低代码表单配置平台",
+      "result": "支撑 30+ 个业务流程复用同一套字段与校验协议",
+      "text": "抽象字段模型、联动规则、异步校验和权限控制，保留关键节点定制能力。这个项目最能说明我如何在灵活性和工程约束之间做取舍。",
+      "tags": ["Vue 3", "Element Plus", "Schema Form", "DX"],
+      "visual": {
+        "evidenceLabel": "字段协议",
+        "evidenceValue": "30+ flows",
+        "prompt": "先定义字段，再允许配置自由度"
+      }
+    },
+    {
+      "index": "03",
+      "name": "数据分析看板性能治理",
+      "result": "首屏可交互时间减少约 42%，图表切换更稳定",
+      "text": "针对接口瀑布流、重复渲染、图表实例泄漏和大列表卡顿做专项优化，并补齐加载、空状态和错误恢复路径。",
+      "tags": ["Performance", "Charts", "Profiling", "UX"],
+      "visual": {
+        "evidenceLabel": "性能快照",
+        "evidenceValue": "-42% TTI",
+        "prompt": "先定位真实瓶颈，再谈优化手段"
+      }
+    }
+  ],
+  "writing": {
+    "filterAriaLabel": "文章分类筛选",
+    "postGridAriaLive": "polite",
+    "ctaLabel": "讨论这篇",
+    "filters": [
+      { "value": "all", "label": "全部" },
+      { "value": "engineering", "label": "工程" },
+      { "value": "product", "label": "产品" },
+      { "value": "interview", "label": "面试" }
+    ],
+    "posts": [
+      {
+        "category": "engineering",
+        "label": "工程",
+        "title": "表单系统失控之前，应该先定义什么",
+        "excerpt": "字段协议、校验生命周期、联动边界和错误展示策略，是复杂表单能否稳定复用的核心。",
+        "read": "8 min"
+      },
+      {
+        "category": "product",
+        "label": "产品",
+        "title": "为什么数据看板不能只堆图表",
+        "excerpt": "看板真正要解决的是判断路径，图表只是表达工具；首屏必须回答最重要的问题。",
+        "read": "6 min"
+      },
+      {
+        "category": "interview",
+        "label": "面试",
+        "title": "项目复盘里，我会主动讲的五个问题",
+        "excerpt": "背景、约束、方案、结果、如果重做会改什么，这五件事比技术名词更能证明经验。",
+        "read": "5 min"
+      },
+      {
+        "category": "engineering",
+        "label": "工程",
+        "title": "一次前端性能优化的完整记录",
+        "excerpt": "从 Lighthouse 分数到真实用户路径，记录定位、验证和防回退的全过程。",
+        "read": "10 min"
+      }
+    ]
+  },
+  "timeline": [
+    {
+      "time": "2024 - 现在",
+      "title": "前端工程师，负责核心业务工作台",
+      "text": "承担需求评审、页面架构、复杂交互实现、性能治理和上线复盘，重点服务运营、客服和数据团队。"
+    },
+    {
+      "time": "2022 - 2024",
+      "title": "Web 开发工程师，参与平台化建设",
+      "text": "参与表单引擎、权限组件、公共请求层和设计规范落地，减少重复开发并提高交付一致性。"
+    },
+    {
+      "time": "持续进行",
+      "title": "技术写作与项目复盘",
+      "text": "把线上问题、方案比较和组件设计沉淀成文章，用于团队知识共享和面试沟通。"
+    }
+  ],
+  "stack": [
+    "TypeScript",
+    "React",
+    "Vue 3",
+    "Vite",
+    "Node.js",
+    "CSS Architecture",
+    "GSAP ScrollTrigger",
+    "Accessibility",
+    "Performance",
+    "Testing",
+    "Code Review",
+    "Documentation"
+  ],
+  "faqs": [
+    {
+      "q": "林澈最适合什么样的岗位？",
+      "a": "适合需要兼顾产品理解、复杂前端实现和交付质量的岗位，尤其是中后台、数据产品、流程平台和增长工具。"
+    },
+    {
+      "q": "面试时最值得展开聊什么？",
+      "a": "建议从 B2B 订单履约工作台和低代码表单平台展开，这两个项目最能体现需求拆解、工程取舍和协作方式。"
+    },
+    {
+      "q": "他如何和设计、后端、业务协作？",
+      "a": "先把目标、限制和验收口径写清楚，再用可评审原型或技术方案推进。上线后会关注真实使用路径和问题回收。"
+    }
+  ],
+  "footer": {
+    "copyright": "© 2026 林澈"
+  }
+}

@@ -12,155 +12,39 @@
   MoveUpRight,
   Send,
   Target,
+  type LucideIcon,
 } from "lucide-react";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import PixiAtmosphere from "./PixiAtmosphere";
 import PixiCardOverlay from "./PixiCardOverlay";
+import siteContentData from "./content/site-content.json";
+import type { CapabilityIconName, SiteContent } from "./content/types";
 
-type PostCategory = "all" | "engineering" | "product" | "interview";
+type PostCategory = string;
 
-const profile = {
-  name: "林澈",
-  role: "前端工程师 / Web 产品工程候选人",
-  email: "linche.dev@example.com",
-  github: "github.com/linche-dev",
-  city: "上海，可远程协作",
+const siteContent = siteContentData as SiteContent;
+const {
+  capabilities,
+  faqs,
+  footer,
+  hero,
+  highlights,
+  navItems,
+  profile,
+  projects,
+  sections,
+  seo,
+  stack,
+  timeline,
+  ui,
+  writing,
+} = siteContent;
+
+const capabilityIcons: Record<CapabilityIconName, LucideIcon> = {
+  code: Code2,
+  gauge: Gauge,
+  target: Target,
 };
-
-const navItems = [
-  { label: "能力", href: "#about" },
-  { label: "项目", href: "#projects" },
-  { label: "文章", href: "#writing" },
-  { label: "经历", href: "#experience" },
-  { label: "联系", href: "#contact" },
-];
-
-const highlights = [
-  { label: "经验", value: "4 年 Web 产品工程" },
-  { label: "主线", value: "React / Vue / TypeScript" },
-  { label: "优势", value: "复杂表单、数据看板、体验优化" },
-];
-
-const capabilities = [
-  {
-    icon: Target,
-    title: "业务拆解",
-    text: "能把模糊需求拆成角色、路径、边界、验收口径，再推动到可评审方案。",
-  },
-  {
-    icon: Code2,
-    title: "工程实现",
-    text: "习惯用类型、组件边界、状态模型和测试把功能写成能长期维护的代码。",
-  },
-  {
-    icon: Gauge,
-    title: "体验治理",
-    text: "关注首屏速度、交互反馈、空状态、错误态和可访问性，不让细节消耗用户信任。",
-  },
-];
-
-const projects = [
-  {
-    index: "01",
-    name: "B2B 订单履约工作台",
-    result: "把客服处理时长从平均 18 分钟降到 9 分钟",
-    text: "负责筛选模型、订单时间线、异常状态聚合和批量操作体验。重构后业务人员可以在一个页面完成查询、判断、备注和流转，不再跨多个后台来回切换。",
-    tags: ["React", "TypeScript", "TanStack Query", "Design Review"],
-  },
-  {
-    index: "02",
-    name: "低代码表单配置平台",
-    result: "支撑 30+ 个业务流程复用同一套字段与校验协议",
-    text: "抽象字段模型、联动规则、异步校验和权限控制，保留关键节点定制能力。这个项目最能说明我如何在灵活性和工程约束之间做取舍。",
-    tags: ["Vue 3", "Element Plus", "Schema Form", "DX"],
-  },
-  {
-    index: "03",
-    name: "数据分析看板性能治理",
-    result: "首屏可交互时间减少约 42%，图表切换更稳定",
-    text: "针对接口瀑布流、重复渲染、图表实例泄漏和大列表卡顿做专项优化，并补齐加载、空状态和错误恢复路径。",
-    tags: ["Performance", "Charts", "Profiling", "UX"],
-  },
-];
-
-const posts = [
-  {
-    category: "engineering" as const,
-    label: "工程",
-    title: "表单系统失控之前，应该先定义什么",
-    excerpt: "字段协议、校验生命周期、联动边界和错误展示策略，是复杂表单能否稳定复用的核心。",
-    read: "8 min",
-  },
-  {
-    category: "product" as const,
-    label: "产品",
-    title: "为什么数据看板不能只堆图表",
-    excerpt: "看板真正要解决的是判断路径，图表只是表达工具；首屏必须回答最重要的问题。",
-    read: "6 min",
-  },
-  {
-    category: "interview" as const,
-    label: "面试",
-    title: "项目复盘里，我会主动讲的五个问题",
-    excerpt: "背景、约束、方案、结果、如果重做会改什么，这五件事比技术名词更能证明经验。",
-    read: "5 min",
-  },
-  {
-    category: "engineering" as const,
-    label: "工程",
-    title: "一次前端性能优化的完整记录",
-    excerpt: "从 Lighthouse 分数到真实用户路径，记录定位、验证和防回退的全过程。",
-    read: "10 min",
-  },
-];
-
-const timeline = [
-  {
-    time: "2024 - 现在",
-    title: "前端工程师，负责核心业务工作台",
-    text: "承担需求评审、页面架构、复杂交互实现、性能治理和上线复盘，重点服务运营、客服和数据团队。",
-  },
-  {
-    time: "2022 - 2024",
-    title: "Web 开发工程师，参与平台化建设",
-    text: "参与表单引擎、权限组件、公共请求层和设计规范落地，减少重复开发并提高交付一致性。",
-  },
-  {
-    time: "持续进行",
-    title: "技术写作与项目复盘",
-    text: "把线上问题、方案比较和组件设计沉淀成文章，用于团队知识共享和面试沟通。",
-  },
-];
-
-const stack = [
-  "TypeScript",
-  "React",
-  "Vue 3",
-  "Vite",
-  "Node.js",
-  "CSS Architecture",
-  "GSAP ScrollTrigger",
-  "Accessibility",
-  "Performance",
-  "Testing",
-  "Code Review",
-  "Documentation",
-];
-
-const faqs = [
-  {
-    q: "林澈最适合什么样的岗位？",
-    a: "适合需要兼顾产品理解、复杂前端实现和交付质量的岗位，尤其是中后台、数据产品、流程平台和增长工具。",
-  },
-  {
-    q: "面试时最值得展开聊什么？",
-    a: "建议从 B2B 订单履约工作台和低代码表单平台展开，这两个项目最能体现需求拆解、工程取舍和协作方式。",
-  },
-  {
-    q: "他如何和设计、后端、业务协作？",
-    a: "先把目标、限制和验收口径写清楚，再用可评审原型或技术方案推进。上线后会关注真实使用路径和问题回收。",
-  },
-];
 
 function usePrefersReducedMotion() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -179,13 +63,18 @@ function usePrefersReducedMotion() {
 }
 
 function App() {
-  const [activeCategory, setActiveCategory] = useState<PostCategory>("all");
+  const [activeCategory, setActiveCategory] = useState<PostCategory>(writing.filters[0]?.value ?? "all");
   const [copied, setCopied] = useState(false);
   const shouldReduceMotion = usePrefersReducedMotion();
   const pageRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    document.title = seo.title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", seo.description);
+  }, []);
+
   const filteredPosts = useMemo(
-    () => posts.filter((post) => activeCategory === "all" || post.category === activeCategory),
+    () => writing.posts.filter((post) => activeCategory === "all" || post.category === activeCategory),
     [activeCategory],
   );
 
@@ -483,13 +372,13 @@ function App() {
   return (
     <div className="page-shell" ref={pageRef}>
       <a className="skip-link" href="#main">
-        跳到主要内容
+        {ui.skipLink}
       </a>
 
       <header className="site-header">
-        <nav className="nav-shell" aria-label="主导航">
-          <a className="brand" href="#top" aria-label="回到首页">
-            <span className="brand-mark">LC</span>
+        <nav className="nav-shell" aria-label={ui.navAriaLabel}>
+          <a className="brand" href="#top" aria-label={ui.brandAriaLabel}>
+            <span className="brand-mark">{profile.initials}</span>
             <span>{profile.name}</span>
           </a>
           <div className="nav-links">
@@ -501,7 +390,7 @@ function App() {
           </div>
           <a className="nav-action" href="#contact">
             <Send aria-hidden="true" />
-            约面试
+            {ui.navAction}
           </a>
         </nav>
       </header>
@@ -512,29 +401,29 @@ function App() {
             className="hero-copy"
           >
             <p className="eyebrow">
-              Interview-ready personal blog
+              {hero.eyebrow}
             </p>
-            <h1>林澈</h1>
+            <h1>{hero.title}</h1>
             <p className="hero-statement">
-              把复杂业务做成清爽、稳定、可持续迭代的 Web 产品。
+              {hero.statement}
             </p>
             <p className="hero-role">
-              前端工程师 / Web 产品工程候选人
+              {profile.role}
             </p>
             <p className="hero-lede">
-              我做过订单履约、低代码表单、数据分析看板，也写技术复盘。比起只展示技术栈，我更希望面试官看到我如何理解问题、做取舍、交付结果。
+              {hero.lede}
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#projects">
                 <BriefcaseBusiness aria-hidden="true" />
-                看项目证据
+                {ui.primaryAction}
               </a>
               <a className="button button-secondary" href="#writing">
                 <BookOpenText aria-hidden="true" />
-                看文章思路
+                {ui.secondaryAction}
               </a>
             </div>
-            <dl className="proof-grid" aria-label="候选人摘要">
+            <dl className="proof-grid" aria-label={ui.proofAriaLabel}>
               {highlights.map((item) => (
                 <div key={item.label}>
                   <dt>{item.label}</dt>
@@ -548,46 +437,40 @@ function App() {
             className="hero-visual"
           >
             <img
-              src="/assets/hero-workspace.png"
-              width="1536"
-              height="864"
+              src={hero.image.src}
+              width={hero.image.width}
+              height={hero.image.height}
               loading="eager"
               decoding="async"
-              alt="明亮桌面上的笔记本电脑、键盘、笔记本和书写工具"
+              alt={hero.image.alt}
             />
             <PixiAtmosphere reducedMotion={Boolean(shouldReduceMotion)} />
-            <div
-              className="hero-floating-card hero-floating-card-left"
-            >
-              <span>Context</span>
-              <strong>需求背景 / 异常流转 / 复盘结论</strong>
-            </div>
-            <div
-              className="hero-floating-card hero-floating-card-right"
-            >
-              <span>Signal</span>
-              <strong>42% faster interaction</strong>
-            </div>
+            {hero.floatingCards.map((card) => (
+              <div className={`hero-floating-card ${card.className}`} key={card.className}>
+                <span>{card.label}</span>
+                <strong>{card.value}</strong>
+              </div>
+            ))}
             <figcaption
               className="visual-caption"
             >
-              <span>Latest note</span>
-              <strong>订单履约工作台复盘：从 18 分钟到 9 分钟</strong>
+              <span>{hero.caption.label}</span>
+              <strong>{hero.caption.value}</strong>
             </figcaption>
           </figure>
         </section>
 
         <RevealSection id="about" className="soft-band">
           <div className="section-heading">
-            <p className="eyebrow">How I work</p>
-            <h2>不是堆素材，而是让面试官更快判断匹配度。</h2>
+            <p className="eyebrow">{sections.about.eyebrow}</p>
+            <h2>{sections.about.title}</h2>
             <p>
-              这个页面按「能力线索 - 项目证据 - 文章沉淀 - 协作方式」组织，所有内容都服务于一次高质量面试沟通。
+              {sections.about.text}
             </p>
           </div>
           <div className="capability-grid">
             {capabilities.map((item) => {
-              const Icon = item.icon;
+              const Icon = capabilityIcons[item.icon];
               return (
                 <article className="lift-card capability-card" key={item.title}>
                   <Icon aria-hidden="true" />
@@ -601,8 +484,8 @@ function App() {
 
         <RevealSection id="projects" className="section-shell">
           <div className="section-heading compact">
-            <p className="eyebrow">Selected work</p>
-            <h2>三个项目，覆盖业务、平台和性能。</h2>
+            <p className="eyebrow">{sections.projects.eyebrow}</p>
+            <h2>{sections.projects.title}</h2>
           </div>
           <div className="project-showcase-list">
             {projects.map((project, index) => (
@@ -613,29 +496,24 @@ function App() {
 
         <RevealSection id="writing" className="writing-band">
           <div className="section-heading">
-            <p className="eyebrow">Writing</p>
-            <h2>文章展示的是判断过程，不只是笔记。</h2>
-            <p>分类切换、卡片入场和悬停反馈都做成了可感知动画，页面不再只是静态排版。</p>
+            <p className="eyebrow">{sections.writing.eyebrow}</p>
+            <h2>{sections.writing.title}</h2>
+            <p>{sections.writing.text}</p>
           </div>
-          <div className="filter-bar" role="group" aria-label="文章分类筛选">
-            {[
-              ["all", "全部"],
-              ["engineering", "工程"],
-              ["product", "产品"],
-              ["interview", "面试"],
-            ].map(([value, label]) => (
+          <div className="filter-bar" role="group" aria-label={writing.filterAriaLabel}>
+            {writing.filters.map(({ value, label }) => (
               <button
                 className={activeCategory === value ? "is-active" : ""}
                 type="button"
                 key={value}
                 aria-pressed={activeCategory === value}
-                onClick={() => setActiveCategory(value as PostCategory)}
+                onClick={() => setActiveCategory(value)}
               >
                 {label}
               </button>
             ))}
           </div>
-          <div className="post-grid" aria-live="polite">
+          <div className="post-grid" aria-live={writing.postGridAriaLive}>
               {filteredPosts.map((post, index) => (
                 <article
                   className="lift-card post-card"
@@ -646,7 +524,7 @@ function App() {
                   <h3>{post.title}</h3>
                   <p>{post.excerpt}</p>
                   <a href="#contact">
-                    讨论这篇
+                    {writing.ctaLabel}
                     <ArrowUpRight aria-hidden="true" />
                   </a>
                 </article>
@@ -656,9 +534,9 @@ function App() {
 
         <RevealSection id="experience" className="section-shell split-section">
           <div className="section-heading sticky-heading">
-            <p className="eyebrow">Experience</p>
-            <h2>经历按能力成长组织，方便面试深入追问。</h2>
-            <p>{profile.city}。我希望下一段工作能继续靠近复杂业务、高质量工程和可靠团队协作。</p>
+            <p className="eyebrow">{sections.experience.eyebrow}</p>
+            <h2>{sections.experience.title}</h2>
+            <p>{profile.city}。{sections.experience.text}</p>
           </div>
           <ol className="timeline">
             {timeline.map((item) => (
@@ -675,8 +553,8 @@ function App() {
 
         <RevealSection className="soft-band stack-section">
           <div className="section-heading compact">
-            <p className="eyebrow">Stack</p>
-            <h2>技术栈和协作习惯</h2>
+            <p className="eyebrow">{sections.stack.eyebrow}</p>
+            <h2>{sections.stack.title}</h2>
           </div>
           <div className="stack-cloud" aria-label="技术栈">
             {stack.map((item) => (
@@ -689,8 +567,8 @@ function App() {
 
         <RevealSection className="section-shell faq-section">
           <div className="section-heading compact">
-            <p className="eyebrow">FAQ</p>
-            <h2>面试前最常被问到的事</h2>
+            <p className="eyebrow">{sections.faq.eyebrow}</p>
+            <h2>{sections.faq.title}</h2>
           </div>
           <div className="faq-list">
             {faqs.map((item, index) => (
@@ -707,9 +585,9 @@ function App() {
 
         <RevealSection id="contact" className="contact-band">
           <div>
-            <p className="eyebrow">Contact</p>
-            <h2>如果岗位需要一个能把产品、工程和体验串起来的人，可以约林澈聊聊。</h2>
-            <p>欢迎把 JD、团队背景或希望重点讨论的问题发到邮箱。我会用项目证据和复盘过程回答。</p>
+            <p className="eyebrow">{sections.contact.eyebrow}</p>
+            <h2>{sections.contact.title}</h2>
+            <p>{sections.contact.text}</p>
           </div>
           <div className="contact-actions">
             <a className="button button-primary" href={`mailto:${profile.email}`}>
@@ -718,7 +596,7 @@ function App() {
             </a>
             <button className="button button-secondary" type="button" onClick={copyEmail}>
               <Copy aria-hidden="true" />
-              {copied ? "已复制" : "复制邮箱"}
+              {copied ? ui.copiedEmail : ui.copyEmail}
             </button>
             <a className="button button-ghost" href={`https://${profile.github}`}>
               <Github aria-hidden="true" />
@@ -729,9 +607,9 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <span>© 2026 林澈</span>
+        <span>{footer.copyright}</span>
         <a href="#top">
-          回到顶部
+          {ui.footerBackToTop}
           <MoveUpRight aria-hidden="true" />
         </a>
       </footer>
@@ -827,12 +705,12 @@ function ProjectShowcase({
         </div>
         <div className="showcase-panel showcase-panel-stack">
           <span className="mini-label">Evidence</span>
-          <strong>{index === 0 ? "流程时间线" : index === 1 ? "字段协议" : "性能快照"}</strong>
-          <small>{index === 0 ? "9 min avg" : index === 1 ? "30+ flows" : "-42% TTI"}</small>
+          <strong>{project.visual.evidenceLabel}</strong>
+          <small>{project.visual.evidenceValue}</small>
         </div>
         <div className="showcase-prompt">
           <span>@</span>
-          <p>{index === 0 ? "把异常订单和处理建议放在同一上下文" : index === 1 ? "先定义字段，再允许配置自由度" : "先定位真实瓶颈，再谈优化手段"}</p>
+          <p>{project.visual.prompt}</p>
         </div>
       </div>
     </article>
