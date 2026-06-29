@@ -122,7 +122,14 @@ function ContentStudio({
         },
         method: "POST",
       });
-      const result = await response.json();
+      const responseText = await response.text();
+      let result: { error?: string; ok?: boolean } = {};
+
+      try {
+        result = responseText ? JSON.parse(responseText) : {};
+      } catch {
+        throw new Error(responseText || "服务端返回了非 JSON 错误。");
+      }
 
       if (!response.ok) {
         throw new Error(result.error || "保存失败");

@@ -48,7 +48,7 @@ async function githubRequest(url, token, init = {}) {
   return data;
 }
 
-async function handler(request, response) {
+export default async function handler(request, response) {
   if (request.method !== "POST") {
     response.setHeader("Allow", "POST");
     sendJson(response, 405, { error: "Method not allowed." });
@@ -102,5 +102,3 @@ async function handler(request, response) {
     });
   }
 }
-
-module.exports = handler;
