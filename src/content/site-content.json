@@ -4,7 +4,7 @@
     "description": "jjd 的个人面试博客，展示前端工程、产品协作、项目复盘和技术文章。"
   },
   "profile": {
-    "name": "jjd",
+    "name": "金佳栋",
     "initials": "JJD",
     "role": "前端工程师 / Web 产品工程候选人",
     "email": "2499124163@qq.com",
@@ -24,15 +24,30 @@
     "footerBackToTop": "回到顶部"
   },
   "navItems": [
-    { "label": "能力", "href": "#about" },
-    { "label": "项目", "href": "#projects" },
-    { "label": "文章", "href": "#writing" },
-    { "label": "经历", "href": "#experience" },
-    { "label": "联系", "href": "#contact" }
+    {
+      "label": "能力",
+      "href": "#about"
+    },
+    {
+      "label": "项目",
+      "href": "#projects"
+    },
+    {
+      "label": "文章",
+      "href": "#writing"
+    },
+    {
+      "label": "经历",
+      "href": "#experience"
+    },
+    {
+      "label": "联系",
+      "href": "#contact"
+    }
   ],
   "hero": {
     "eyebrow": "Interview-ready personal blog",
-    "title": "jjd",
+    "title": "金佳栋",
     "statement": "把复杂业务做成清爽、稳定、可持续迭代的 Web 产品。",
     "lede": "我做过订单履约、低代码表单、数据分析看板，也写技术复盘。比起只展示技术栈，我更希望面试官看到我如何理解问题、做取舍、交付结果。",
     "image": {
@@ -59,9 +74,18 @@
     }
   },
   "highlights": [
-    { "label": "经验", "value": "4 年 Web 产品工程" },
-    { "label": "主线", "value": "React / Vue / TypeScript" },
-    { "label": "优势", "value": "复杂表单、数据看板、体验优化" }
+    {
+      "label": "经验",
+      "value": "4 年 Web 产品工程"
+    },
+    {
+      "label": "主线",
+      "value": "React / Vue / TypeScript"
+    },
+    {
+      "label": "优势",
+      "value": "复杂表单、数据看板、体验优化"
+    }
   ],
   "sections": {
     "about": {
@@ -120,7 +144,12 @@
       "name": "B2B 订单履约工作台",
       "result": "把客服处理时长从平均 18 分钟降到 9 分钟",
       "text": "负责筛选模型、订单时间线、异常状态聚合和批量操作体验。重构后业务人员可以在一个页面完成查询、判断、备注和流转，不再跨多个后台来回切换。",
-      "tags": ["React", "TypeScript", "TanStack Query", "Design Review"],
+      "tags": [
+        "React",
+        "TypeScript",
+        "TanStack Query",
+        "Design Review"
+      ],
       "visual": {
         "evidenceLabel": "流程时间线",
         "evidenceValue": "9 min avg",
@@ -132,7 +161,12 @@
       "name": "低代码表单配置平台",
       "result": "支撑 30+ 个业务流程复用同一套字段与校验协议",
       "text": "抽象字段模型、联动规则、异步校验和权限控制，保留关键节点定制能力。这个项目最能说明我如何在灵活性和工程约束之间做取舍。",
-      "tags": ["Vue 3", "Element Plus", "Schema Form", "DX"],
+      "tags": [
+        "Vue 3",
+        "Element Plus",
+        "Schema Form",
+        "DX"
+      ],
       "visual": {
         "evidenceLabel": "字段协议",
         "evidenceValue": "30+ flows",
@@ -144,7 +178,12 @@
       "name": "数据分析看板性能治理",
       "result": "首屏可交互时间减少约 42%，图表切换更稳定",
       "text": "针对接口瀑布流、重复渲染、图表实例泄漏和大列表卡顿做专项优化，并补齐加载、空状态和错误恢复路径。",
-      "tags": ["Performance", "Charts", "Profiling", "UX"],
+      "tags": [
+        "Performance",
+        "Charts",
+        "Profiling",
+        "UX"
+      ],
       "visual": {
         "evidenceLabel": "性能快照",
         "evidenceValue": "-42% TTI",
@@ -157,10 +196,22 @@
     "postGridAriaLive": "polite",
     "ctaLabel": "讨论这篇",
     "filters": [
-      { "value": "all", "label": "全部" },
-      { "value": "engineering", "label": "工程" },
-      { "value": "product", "label": "产品" },
-      { "value": "interview", "label": "面试" }
+      {
+        "value": "all",
+        "label": "全部"
+      },
+      {
+        "value": "engineering",
+        "label": "工程"
+      },
+      {
+        "value": "product",
+        "label": "产品"
+      },
+      {
+        "value": "interview",
+        "label": "面试"
+      }
     ],
     "posts": [
       {
