@@ -5,7 +5,11 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/content-studio",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/content-studio/",
       "destination": "/index.html"
     }
   ]

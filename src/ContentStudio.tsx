@@ -6,6 +6,7 @@ import {
   Laptop,
   Monitor,
   RotateCcw,
+  Save,
   Smartphone,
   Tablet,
 } from "lucide-react";
@@ -14,6 +15,7 @@ import type { SiteContent } from "./content/types";
 
 type StudioSectionId = "hero" | "about" | "projects" | "writing" | "experience" | "stack" | "faq" | "contact";
 type PreviewMode = "desktop" | "tablet" | "mobile";
+type SaveState = "idle" | "saving" | "saved" | "error";
 
 const sectionMeta: Array<{
   id: StudioSectionId;
@@ -63,6 +65,8 @@ function ContentStudio({
   const [focusedField, setFocusedField] = useState<string>();
   const [previewMode, setPreviewMode] = useState<PreviewMode>("desktop");
   const [copyState, setCopyState] = useState("复制 JSON");
+  const [saveError, setSaveError] = useState("");
+  const [saveState, setSaveState] = useState<SaveState>("idle");
   const previewRef = useRef<HTMLDivElement>(null);
 
   const jsonOutput = useMemo(() => JSON.stringify(content, null, 2), [content]);
@@ -99,6 +103,37 @@ function ContentStudio({
   function resetContent() {
     setContent(cloneContent(initialContent));
     setFocusedField(undefined);
+    setSaveError("");
+    setSaveState("idle");
+  }
+
+  async function saveContent() {
+    setSaveError("");
+    setSaveState("saving");
+
+    try {
+      const response = await fetch("/api/save-content", {
+        body: JSON.stringify({
+          content,
+          message: `Update site content for ${content.profile.name || "profile"}`,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      });
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "保存失败");
+      }
+
+      window.localStorage.setItem("ms-content-studio-draft", jsonOutput);
+      setSaveState("saved");
+    } catch (error) {
+      setSaveError(error instanceof Error ? error.message : "保存失败");
+      setSaveState("error");
+    }
   }
 
   return (
@@ -159,12 +194,28 @@ function ContentStudio({
               <Clipboard aria-hidden="true" />
               {copyState}
             </button>
+            <button
+              className="studio-icon-button studio-save-button"
+              type="button"
+              onClick={saveContent}
+              disabled={saveState === "saving"}
+            >
+              <Save aria-hidden="true" />
+              {saveState === "saving" ? "保存中" : "保存"}
+            </button>
             <button className="studio-icon-button" type="button" onClick={downloadJson}>
               <Download aria-hidden="true" />
               下载
             </button>
           </div>
         </header>
+        <div className={`studio-save-status studio-save-status-${saveState}`} aria-live="polite">
+          {saveState === "saved"
+            ? "已保存到 GitHub，Vercel 会自动部署。返回主页会先显示本机已保存内容。"
+            : saveState === "error"
+              ? `保存失败：${saveError}`
+              : "编辑完成后点保存，系统会提交到 GitHub 并触发 Vercel 部署。"}
+        </div>
 
         <div className="studio-workspace">
           <section className="studio-preview-panel" aria-label="页面预览">

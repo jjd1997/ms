@@ -25,7 +25,18 @@ npm run dev
 http://127.0.0.1:5173/content-studio
 ```
 
-工作台支持按页面区块编辑、实时预览、桌面/平板/手机预览切换，以及复制或下载当前 `site-content.json`。静态部署版本不能直接写回 GitHub，导出的 JSON 需要替换 `src/content/site-content.json` 后再提交。
+工作台支持按页面区块编辑、实时预览、桌面/平板/手机预览切换、复制/下载当前 `site-content.json`，以及保存到 GitHub。
+
+要启用“保存”按钮，需要在 Vercel 项目环境变量里配置：
+
+```bash
+GITHUB_TOKEN=你的 GitHub fine-grained token
+GITHUB_OWNER=jjd1997
+GITHUB_REPO=ms
+GITHUB_BRANCH=main
+```
+
+Token 只需要对 `jjd1997/ms` 仓库有 Contents 读写权限。保存成功后会更新 `src/content/site-content.json`，GitHub 会触发 Vercel 自动部署。保存成功后，当前浏览器也会先用本地缓存展示新内容，所以点“返回主页”能立刻看到刚保存的版本。
 
 改完内容后：
 

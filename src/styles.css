@@ -1372,6 +1372,41 @@ h3 {
   color: var(--ink);
 }
 
+.studio-icon-button:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.studio-save-button {
+  border-color: rgba(79, 112, 79, 0.38);
+  background: var(--sage-strong);
+  color: #fff;
+}
+
+.studio-save-status {
+  min-height: 44px;
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 253, 249, 0.78);
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.studio-save-status-saved {
+  border-color: rgba(79, 112, 79, 0.3);
+  background: rgba(237, 244, 232, 0.88);
+  color: var(--sage-strong);
+}
+
+.studio-save-status-error {
+  border-color: rgba(189, 107, 91, 0.32);
+  background: rgba(250, 231, 220, 0.76);
+  color: #8e4336;
+}
+
 .studio-workspace {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 390px;

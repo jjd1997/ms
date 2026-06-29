@@ -32,6 +32,15 @@ const capabilityIcons: Record<CapabilityIconName, LucideIcon> = {
   target: Target,
 };
 
+function getStoredContent() {
+  try {
+    const rawContent = window.localStorage.getItem("ms-content-studio-draft");
+    return rawContent ? (JSON.parse(rawContent) as SiteContent) : siteContent;
+  } catch {
+    return siteContent;
+  }
+}
+
 function usePrefersReducedMotion() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -49,18 +58,19 @@ function usePrefersReducedMotion() {
 }
 
 function App() {
+  const [content] = useState(getStoredContent);
   const isStudioRoute = window.location.pathname.includes("content-studio");
 
   if (isStudioRoute) {
     return (
       <ContentStudio
-        initialContent={siteContent}
+        initialContent={content}
         renderPreview={(props) => <PublicPage {...props} />}
       />
     );
   }
 
-  return <PublicPage content={siteContent} />;
+  return <PublicPage content={content} />;
 }
 
 export function PublicPage({
