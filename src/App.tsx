@@ -55,7 +55,7 @@ function normalizeContent(content: SiteContent): SiteContent {
   };
 }
 
-function getStoredContent() {
+function getStoredStudioContent() {
   try {
     const rawContent = window.localStorage.getItem("ms-content-studio-draft");
     return rawContent ? normalizeContent(JSON.parse(rawContent) as SiteContent) : siteContent;
@@ -81,19 +81,24 @@ function usePrefersReducedMotion() {
 }
 
 function App() {
-  const [content] = useState(getStoredContent);
   const isStudioRoute = window.location.pathname.includes("content-studio");
 
   if (isStudioRoute) {
-    return (
-      <ContentStudio
-        initialContent={content}
-        renderPreview={(props) => <PublicPage {...props} />}
-      />
-    );
+    return <ContentStudioRoute />;
   }
 
-  return <PublicPage content={content} />;
+  return <PublicPage content={siteContent} />;
+}
+
+function ContentStudioRoute() {
+  const [studioContent] = useState(getStoredStudioContent);
+
+  return (
+    <ContentStudio
+      initialContent={studioContent}
+      renderPreview={(props) => <PublicPage {...props} />}
+    />
+  );
 }
 
 export function PublicPage({
