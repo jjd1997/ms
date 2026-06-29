@@ -754,6 +754,82 @@ h3 {
   padding: 6px 10px;
 }
 
+.project-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.project-link-row a,
+.lab-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.project-link-row a {
+  padding: 9px 13px;
+  border: 1px solid rgba(111, 141, 114, 0.24);
+  background: rgba(255, 253, 249, 0.84);
+  color: var(--sage-strong);
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.project-link-row a:hover,
+.project-link-row a:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(79, 112, 79, 0.42);
+  background: rgba(237, 244, 232, 0.86);
+}
+
+.lab-section {
+  margin-bottom: 94px;
+}
+
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.lab-card {
+  display: flex;
+  min-height: 300px;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.lab-status {
+  width: fit-content;
+  margin-bottom: 18px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--surface-sage);
+  color: var(--sage-strong);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.lab-card p {
+  color: var(--muted);
+}
+
+.lab-card .tag-list {
+  margin-top: auto;
+}
+
+.lab-link {
+  margin-top: 20px;
+  color: var(--coral);
+}
+
 .showcase-visual {
   position: relative;
   min-height: 350px;
@@ -1653,7 +1729,8 @@ h3 {
   }
 
   .capability-grid,
-  .post-grid {
+  .post-grid,
+  .lab-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1800,6 +1877,7 @@ h3 {
   .showcase-card,
   .capability-card,
   .post-card,
+  .lab-card,
   .timeline li {
     width: 100%;
     max-width: 22.5rem;

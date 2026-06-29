@@ -22,7 +22,7 @@ import siteContentData from "./content/site-content.json";
 import type { CapabilityIconName, SiteContent } from "./content/types";
 
 type PostCategory = string;
-type StudioSectionId = "hero" | "about" | "projects" | "writing" | "experience" | "stack" | "faq" | "contact";
+type StudioSectionId = "hero" | "about" | "projects" | "lab" | "writing" | "experience" | "stack" | "faq" | "contact";
 
 const siteContent = siteContentData as SiteContent;
 
@@ -32,10 +32,26 @@ const capabilityIcons: Record<CapabilityIconName, LucideIcon> = {
   target: Target,
 };
 
+function normalizeContent(content: SiteContent): SiteContent {
+  return {
+    ...siteContent,
+    ...content,
+    projects: content.projects.map((project, index) => ({
+      ...project,
+      links: project.links ?? siteContent.projects[index]?.links ?? [],
+    })),
+    sections: {
+      ...siteContent.sections,
+      ...content.sections,
+    },
+    lab: content.lab ?? siteContent.lab,
+  };
+}
+
 function getStoredContent() {
   try {
     const rawContent = window.localStorage.getItem("ms-content-studio-draft");
-    return rawContent ? (JSON.parse(rawContent) as SiteContent) : siteContent;
+    return rawContent ? normalizeContent(JSON.parse(rawContent) as SiteContent) : siteContent;
   } catch {
     return siteContent;
   }
@@ -90,6 +106,7 @@ export function PublicPage({
     footer,
     hero,
     highlights,
+    lab,
     navItems,
     profile,
     projects,
@@ -550,6 +567,32 @@ export function PublicPage({
           </div>
         </RevealSection>
 
+        <RevealSection id="lab" className={`soft-band lab-section${studioSectionClass("lab")}`}>
+          <div className="section-heading">
+            <p className="eyebrow">{sections.lab.eyebrow}</p>
+            <h2 className={studioFieldClass("sections.lab.title")}>{sections.lab.title}</h2>
+            <p className={studioFieldClass("sections.lab.text")}>{sections.lab.text}</p>
+          </div>
+          <div className="lab-grid">
+            {lab.items.map((item, index) => (
+              <a className="lab-card lift-card" href={item.href} key={item.title}>
+                <span className="lab-status">{item.status}</span>
+                <h3 className={studioFieldClass(`lab.items.${index}.title`)}>{item.title}</h3>
+                <p className={studioFieldClass(`lab.items.${index}.text`)}>{item.text}</p>
+                <ul className="tag-list" aria-label={`${item.title} 标签`}>
+                  {item.tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+                <span className="lab-link">
+                  打开项目
+                  <ArrowUpRight aria-hidden="true" />
+                </span>
+              </a>
+            ))}
+          </div>
+        </RevealSection>
+
         <RevealSection id="writing" className={`writing-band${studioSectionClass("writing")}`}>
           <div className="section-heading">
             <p className="eyebrow">{sections.writing.eyebrow}</p>
@@ -745,6 +788,16 @@ function ProjectShowcase({
             <li key={tag}>{tag}</li>
           ))}
         </ul>
+        {project.links.length > 0 ? (
+          <div className="project-link-row">
+            {project.links.map((link) => (
+              <a href={link.href} key={`${project.name}-${link.label}`}>
+                {link.label}
+                <ArrowUpRight aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+        ) : null}
       </div>
 
       <div className="showcase-visual" aria-hidden="true">

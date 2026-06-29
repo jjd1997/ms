@@ -47,6 +47,8 @@ Vercel 会跟随 `main` 分支自动重新部署。
 - `sections`：各区块标题和说明。
 - `capabilities`：能力卡片，`icon` 目前支持 `target`、`code`、`gauge`。
 - `projects`：项目案例和右侧视觉面板内容。
+- `projects[].links`：项目卡片跳转入口，可指向详情页、Demo、GitHub 或文章。
+- `lab`：作品入口区，用来收纳后续 Demo、工具、实验和项目导航。
 - `writing`：文章分类、文章卡片和 CTA 文案。
 - `timeline`：经历时间线。
 - `stack`：技术栈标签。

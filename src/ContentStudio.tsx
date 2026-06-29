@@ -13,7 +13,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { SiteContent } from "./content/types";
 
-type StudioSectionId = "hero" | "about" | "projects" | "writing" | "experience" | "stack" | "faq" | "contact";
+type StudioSectionId = "hero" | "about" | "projects" | "lab" | "writing" | "experience" | "stack" | "faq" | "contact";
 type PreviewMode = "desktop" | "tablet" | "mobile";
 type SaveState = "idle" | "saving" | "saved" | "error";
 
@@ -25,6 +25,7 @@ const sectionMeta: Array<{
   { id: "hero", label: "首屏", hint: "姓名、定位、摘要和亮点" },
   { id: "about", label: "能力", hint: "工作方式和能力卡片" },
   { id: "projects", label: "项目", hint: "项目案例、结果和标签" },
+  { id: "lab", label: "作品", hint: "后续项目和外部入口" },
   { id: "writing", label: "文章", hint: "分类、文章卡片和 CTA" },
   { id: "experience", label: "经历", hint: "时间线和技术栈上下文" },
   { id: "stack", label: "技术栈", hint: "技能标签云" },
@@ -433,6 +434,86 @@ function SectionEditor({
               textarea
               {...fieldProps}
             />
+            <Field
+              field={`projects.${index}.links`}
+              label="链接，每行一个：标签 | 地址"
+              value={project.links.map((link) => `${link.label} | ${link.href}`).join("\n")}
+              onChange={(value) =>
+                updateContent((draft) => {
+                  draft.projects[index].links = parseLinks(value);
+                })
+              }
+              textarea
+              {...fieldProps}
+            />
+          </div>
+        ))}
+      </EditorGroup>
+    );
+  }
+
+  if (activeSection === "lab") {
+    return (
+      <EditorGroup>
+        <Field
+          field="sections.lab.title"
+          label="作品区标题"
+          value={content.sections.lab.title}
+          onChange={(value) => updateContent((draft) => void (draft.sections.lab.title = value))}
+          textarea
+          {...fieldProps}
+        />
+        <Field
+          field="sections.lab.text"
+          label="作品区说明"
+          value={content.sections.lab.text}
+          onChange={(value) => updateContent((draft) => void (draft.sections.lab.text = value))}
+          textarea
+          {...fieldProps}
+        />
+        {content.lab.items.map((item, index) => (
+          <div className="studio-repeat-card" key={index}>
+            <Field
+              field={`lab.items.${index}.title`}
+              label={`作品 ${index + 1} 标题`}
+              value={item.title}
+              onChange={(value) => updateContent((draft) => void (draft.lab.items[index].title = value))}
+              {...fieldProps}
+            />
+            <Field
+              field={`lab.items.${index}.status`}
+              label="状态"
+              value={item.status}
+              onChange={(value) => updateContent((draft) => void (draft.lab.items[index].status = value))}
+              {...fieldProps}
+            />
+            <Field
+              field={`lab.items.${index}.text`}
+              label="说明"
+              value={item.text}
+              onChange={(value) => updateContent((draft) => void (draft.lab.items[index].text = value))}
+              textarea
+              {...fieldProps}
+            />
+            <Field
+              field={`lab.items.${index}.href`}
+              label="跳转地址"
+              value={item.href}
+              onChange={(value) => updateContent((draft) => void (draft.lab.items[index].href = value))}
+              {...fieldProps}
+            />
+            <Field
+              field={`lab.items.${index}.tags`}
+              label="标签，每行一个"
+              value={item.tags.join("\n")}
+              onChange={(value) =>
+                updateContent((draft) => {
+                  draft.lab.items[index].tags = value.split("\n").map((tag) => tag.trim()).filter(Boolean);
+                })
+              }
+              textarea
+              {...fieldProps}
+            />
           </div>
         ))}
       </EditorGroup>
@@ -627,6 +708,16 @@ function SectionEditor({
 
 function EditorGroup({ children }: { children: React.ReactNode }) {
   return <div className="studio-editor-group">{children}</div>;
+}
+
+function parseLinks(value: string) {
+  return value
+    .split("\n")
+    .map((line) => {
+      const [label = "", href = ""] = line.split("|").map((part) => part.trim());
+      return { href, label };
+    })
+    .filter((link) => link.href && link.label);
 }
 
 function Field({

@@ -33,6 +33,10 @@
       "href": "#projects"
     },
     {
+      "label": "作品",
+      "href": "#lab"
+    },
+    {
       "label": "文章",
       "href": "#writing"
     },
@@ -97,6 +101,11 @@
       "eyebrow": "Selected work",
       "title": "三个项目，覆盖业务、平台和性能。"
     },
+    "lab": {
+      "eyebrow": "Projects lab",
+      "title": "后续作品都会从这里跳转出去。",
+      "text": "这个区域会持续收纳可访问的 Demo、工具、实验和开源项目，让面试官能沿着主页继续查看真实产出。"
+    },
     "writing": {
       "eyebrow": "Writing",
       "title": "文章展示的是判断过程，不只是笔记。",
@@ -150,6 +159,16 @@
         "TanStack Query",
         "Design Review"
       ],
+      "links": [
+        {
+          "label": "项目详情",
+          "href": "#contact"
+        },
+        {
+          "label": "复盘文章",
+          "href": "#writing"
+        }
+      ],
       "visual": {
         "evidenceLabel": "流程时间线",
         "evidenceValue": "9 min avg",
@@ -166,6 +185,16 @@
         "Element Plus",
         "Schema Form",
         "DX"
+      ],
+      "links": [
+        {
+          "label": "项目详情",
+          "href": "#contact"
+        },
+        {
+          "label": "技术方案",
+          "href": "#writing"
+        }
       ],
       "visual": {
         "evidenceLabel": "字段协议",
@@ -184,6 +213,16 @@
         "Profiling",
         "UX"
       ],
+      "links": [
+        {
+          "label": "项目详情",
+          "href": "#contact"
+        },
+        {
+          "label": "优化记录",
+          "href": "#writing"
+        }
+      ],
       "visual": {
         "evidenceLabel": "性能快照",
         "evidenceValue": "-42% TTI",
@@ -191,6 +230,43 @@
       }
     }
   ],
+  "lab": {
+    "items": [
+      {
+        "title": "个人面试博客与内容工作台",
+        "status": "已上线",
+        "text": "当前这个站点本身就是一个项目入口：包含响应式主页、PixiJS 视觉效果、GSAP 滚动动画和可视化内容工作台。",
+        "href": "/content-studio",
+        "tags": [
+          "React",
+          "Vite",
+          "Content Studio"
+        ]
+      },
+      {
+        "title": "下一个项目入口",
+        "status": "规划中",
+        "text": "后续可以放管理系统、AI 工具、组件库或小游戏。每个入口都能跳转到独立 Demo、GitHub 或项目详情页。",
+        "href": "#contact",
+        "tags": [
+          "Demo",
+          "GitHub",
+          "Case Study"
+        ]
+      },
+      {
+        "title": "技术文章与复盘索引",
+        "status": "持续更新",
+        "text": "把项目复盘、性能优化记录和工程方案沉淀成可检索入口，方便面试时按主题展开。",
+        "href": "#writing",
+        "tags": [
+          "Writing",
+          "Review",
+          "Interview"
+        ]
+      }
+    ]
+  },
   "writing": {
     "filterAriaLabel": "文章分类筛选",
     "postGridAriaLive": "polite",

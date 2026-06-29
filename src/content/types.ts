@@ -1,5 +1,10 @@
 export type CapabilityIconName = "target" | "code" | "gauge";
 
+interface ContentLink {
+  href: string;
+  label: string;
+}
+
 export interface SiteContent {
   seo: {
     title: string;
@@ -57,6 +62,7 @@ export interface SiteContent {
   sections: {
     about: SectionCopy;
     projects: Pick<SectionCopy, "eyebrow" | "title">;
+    lab: SectionCopy;
     writing: SectionCopy;
     experience: SectionCopy;
     stack: Pick<SectionCopy, "eyebrow" | "title">;
@@ -74,12 +80,22 @@ export interface SiteContent {
     result: string;
     text: string;
     tags: string[];
+    links: ContentLink[];
     visual: {
       evidenceLabel: string;
       evidenceValue: string;
       prompt: string;
     };
   }>;
+  lab: {
+    items: Array<{
+      title: string;
+      status: string;
+      text: string;
+      href: string;
+      tags: string[];
+    }>;
+  };
   writing: {
     filterAriaLabel: string;
     postGridAriaLive: "off" | "polite" | "assertive";

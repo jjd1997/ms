@@ -2,6 +2,8 @@
 
 这是一个 React + Vite + TypeScript 的个人面试博客页面，使用 GSAP ScrollTrigger 做滚动视差动画，并用 PixiJS 做局部视觉特效。
 
+页面也承担个人项目门户的角色：项目卡可以配置详情、Demo、GitHub 或文章链接，`Projects Lab` 区块用于承接后续作品和实验项目。
+
 ## 本地查看
 
 ```bash
